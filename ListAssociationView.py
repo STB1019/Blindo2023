@@ -8,12 +8,11 @@ import os
 import shutil
 from time import sleep
 
+
 class ListAssociationView:
 
     #  schermata che appare dopo aver cliccato il pulsante ASSOCIAZIONI nel MENU PRINCIPALE
     def schermata_associazioni():
-
-
         # variablile globale
         # in questo modo è più semplice gestire la chiusura di questa schermata
         global root
@@ -33,7 +32,7 @@ class ListAssociationView:
                            bd=20,
                            width=200,
                            height=2)
-        label_memo.pack(side=TOP,)
+        label_memo.pack(side=TOP, )
         sorted_list = fm.give_sorted_list()
 
         my_list = Listbox(root,  # yscrollcommand = scrollbar.set ,
@@ -47,8 +46,7 @@ class ListAssociationView:
         for audio in sorted_list:
             my_list.insert(END, audio)
 
-
-       # my_list.bind('<<ListboxSelect>>', ListAssociationView.drop_menu_list_association)
+        # my_list.bind('<<ListboxSelect>>', ListAssociationView.drop_menu_list_association)
 
         frame.pack()
         my_list.pack()
@@ -58,13 +56,13 @@ class ListAssociationView:
         # _______________________ end of schermata_associazioni ___________________________
 
     # funzione che importa automaticamente l'unica lista presente sottoforma di cartella
-    #nella cartella "Liste" di blindo
+    # nella cartella "Liste" di blindo
     def auto_import_list():
-        #uv.show_dialog_with_time("Attendere\ncaricamento automatico in corso...", 2)
+        # uv.show_dialog_with_time("Attendere\ncaricamento automatico in corso...", 2)
         chiavetta = os.listdir(SP.path_punto_accesso_chiavette)
 
         # finchè il path adibito all'accoglienza delle chiavette non viene riempito
-        #con la usb key collegata, il ciclo previene un errore causato #
+        # con la usb key collegata, il ciclo previene un errore causato #
         # dalla differenza di velocità tra il comportamento sopracitato #
         # e la velocità dell' event detect che triggera questa funzione
         # l'event detect può essere trovato nel file GPIO mamaging
@@ -72,8 +70,8 @@ class ListAssociationView:
             chiavetta = os.listdir(SP.path_punto_accesso_chiavette)
             sleep(1)
 
-        path_folder_liste=os.path.join(SP.path_punto_accesso_chiavette,
-                                        os.path.join(chiavetta[0],SP.expor_folder_name))
+        path_folder_liste = os.path.join(SP.path_punto_accesso_chiavette,
+                                         os.path.join(chiavetta[0], SP.export_folder_name))
 
         # se non trovo la cartella "Liste" la creo ed esco
         # dalla funzione auto_import perchè non c'è nulla da importare
@@ -88,24 +86,24 @@ class ListAssociationView:
 
             folder_lista = os.listdir(path_folder_liste)
 
-            path_folder_lista = os.path.join(path_folder_liste,folder_lista[0])
+            path_folder_lista = os.path.join(path_folder_liste, folder_lista[0])
 
             # ciclo che scorre il contenuto della cartella che rappresenta la lista
             # al suo interno esistono sia i file audio
-            #che l'oggetto lista
+            # che l'oggetto lista
             # ognuno di questi file finisce in un posto diverso all' interno della memoria del raspberry
             for file in os.listdir(path_folder_lista):
 
-                path_file = os.path.join(path_folder_lista,file)
+                path_file = os.path.join(path_folder_lista, file)
 
                 if file == folder_lista[0]:
                     fm.copy_file_from_path_to_another(path_file, SP.path_liste)
 
                 else:
-                    fm.copy_file_from_path_to_another(path_file,SP.path_che_simula_la_memoria_interna_del_raspberry)
+                    fm.copy_file_from_path_to_another(path_file, SP.path_che_simula_la_memoria_interna_del_raspberry)
 
             fm.change_list(folder_lista[0])
-            #uv.show_dialog_with_time("Lista "+folder_lista[0]+" importata con successo",2)
+            # uv.show_dialog_with_time("Lista "+folder_lista[0]+" importata con successo",2)
 
 
         else:
@@ -113,7 +111,7 @@ class ListAssociationView:
 
     '''
     funzione disabilitata 
-            
+
     def drop_menu_list_association(evt):
 
         def unbind_and_closing(unbind_root):
@@ -202,6 +200,7 @@ class ListAssociationView:
         frame.pack(fill=BOTH, expand=YES)
         # _________________________________end of drop_menu_list_association()____________________
     '''
+
     # schermata che stampa tanti punsanti (sw) quanti pulsanti (hw) sono collegati a Blindo
     def schermata_pulsanti(closingroot, number_of_button):
 
@@ -221,22 +220,22 @@ class ListAssociationView:
 
         # caratteristiche della scrollbar
         text = Text(frame, wrap="none", bg=SP.standard_color_setting("frame_list_association_view"))
-        vsb = Scrollbar(frame, orient="vertical", command=text.yview,width=40)
+        vsb = Scrollbar(frame, orient="vertical", command=text.yview, width=40)
         vsb.config(width=90)
-        text.configure(yscrollcommand=vsb.set,width=3,bg=SP.standard_color_setting("frame_list_association_view"))
+        text.configure(yscrollcommand=vsb.set, width=3, bg=SP.standard_color_setting("frame_list_association_view"))
         vsb.pack(side="left", fill="y")
-        text.pack(side ="left",fill="both",expand=True)
+        text.pack(side="left", fill="both", expand=True)
 
         exit_button = Button(frame,
-                                  text="Torna \nindietro",
-                                  command=lambda: close(root),
-                                  bd=SP.bord_size,
-                                  relief=SP.bord_style,
-                                  bg=SP.standard_color_setting("exit_button_with_text"),
-                                  font=SP.font_piccolo,
-                                  fg=SP.button_font_color_gray_scale,
-                                  activebackground=SP.standard_color_setting("exit_button_with_text")
-                                  )
+                             text="Torna \nindietro",
+                             command=lambda: close(root),
+                             bd=SP.bord_size,
+                             relief=SP.bord_style,
+                             bg=SP.standard_color_setting("exit_button_with_text"),
+                             font=SP.font_piccolo,
+                             fg=SP.button_font_color_gray_scale,
+                             activebackground=SP.standard_color_setting("exit_button_with_text")
+                             )
         exit_button.config(height=50, width=18)
 
         #  ciclo che crea "number_of_button" pulsanti
@@ -255,13 +254,13 @@ class ListAssociationView:
     def new_list_view(root):
         root.destroy()
         find_list_existing_name = False
-        existing_list=os.listdir(SP.path_liste)
+        existing_list = os.listdir(SP.path_liste)
 
         new_list_name = kv.keyboard("Inserisci il nome della lista")
 
         for list in existing_list:
             if list == new_list_name:
-                find_list_existing_name=True
+                find_list_existing_name = True
 
         if find_list_existing_name:
             choice = uv.multi_choice_view("Lista già presente!\nSostituisci oppure \nannulla l'operazione",
@@ -292,8 +291,8 @@ class ListAssociationView:
 
             # senza questo destroy() l'eliminazione della lista non avviene finchè il programma non viene chiuso
             # questa tecnica è usata anche nella funzione select_items_and_copy
-            #root.destroy()
-            #ListAssociationView.show_list(closing_root)
+            # root.destroy()
+            # ListAssociationView.show_list(closing_root)
             root.destroy()
             ListAssociationView.schermata_associazioni()
             # _______________  END OF delete_item _______________________
@@ -327,7 +326,6 @@ class ListAssociationView:
 
             # ciclo che stampa tante "chiavette" quante inserite nel device
             for USB_key in dirs:
-
                 path_chiavetta = os.path.join(SP.path_punto_accesso_chiavette, USB_key)
                 pulsante = Button(frame, text=USB_key,
                                   bg=SP.standard_color_setting("button_list_association_view"),
@@ -350,24 +348,24 @@ class ListAssociationView:
             root.mainloop()
             # _______________________ end of show_chiavette
 
-        def esporta_lista(root,path_chiavetta_destinazione):
+        def esporta_lista(root, path_chiavetta_destinazione):
             root.destroy()
             list_name = mylist.get('active')
 
             final_path_list = os.path.join(SP.path_liste, list_name)
 
-            final_path_cartella_liste= os.path.join(path_chiavetta_destinazione, SP.expor_folder_name)
-            #print(final_path_cartella_liste)
+            final_path_cartella_liste = os.path.join(path_chiavetta_destinazione, SP.export_folder_name)
+            # print(final_path_cartella_liste)
 
             cartella_lista_esportata = os.path.join(final_path_cartella_liste, list_name)
-            #print(cartella_lista_esportata)
+            # print(cartella_lista_esportata)
 
             rewite = True
 
             if os.path.exists(cartella_lista_esportata):
 
                 # variabile booleana assegnata dalla risposta dell' utente
-                user_choice = uv.multi_choice_view("Attenzione!\nEsiste già una versione di\n'"+list_name[0:20]+"'",
+                user_choice = uv.multi_choice_view("Attenzione!\nEsiste già una versione di\n'" + list_name[0:20] + "'",
                                                    "Sovrascrivi",
                                                    "Annulla")
 
@@ -388,12 +386,11 @@ class ListAssociationView:
             else:
 
                 oldmask = os.umask(0o77)
-#                os.makedirs(final_path_cartella_liste, 0o1411)
+                #                os.makedirs(final_path_cartella_liste, 0o1411)
                 os.makedirs(cartella_lista_esportata, 0o1411)
                 os.umask(oldmask)
                 uv.show_dialog_with_time("Esportazione in corso...", 2)
                 uv.show_dialog_with_time("Operazione conclusa con successo", 2)
-
 
             # carico la lista selezionata dall'utente e la metto nell'oggetto "list_obj"
             if rewite:
@@ -406,7 +403,7 @@ class ListAssociationView:
                         for audio in list_objects:
                             if audio.name != "DEFAULT":
                                 name_file = str(audio.name)
-                                path_scr = os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry,name_file)
+                                path_scr = os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry, name_file)
 
                                 fm.copy_file_from_path_to_another(path_scr,
                                                                   cartella_lista_esportata)
@@ -417,15 +414,14 @@ class ListAssociationView:
 
             # ____________________________  end of esport_list ____________________________
 
-
         def rename_selected_element(root):
             # array con tutti gli elementi selezionati
             selected_items = [mylist.get(idx) for idx in mylist.curselection()]
 
-            #file_in_memory= os.listdir(SP.path_che_simula_la_memoria_interna_del_raspberry)
+            # file_in_memory= os.listdir(SP.path_che_simula_la_memoria_interna_del_raspberry)
             # selezione del primo elemento dell'array
             selected = selected_items[0]
-            if selected!="Lista di default":
+            if selected != "Lista di default":
                 new_name = kv.keyboard("Rinomina '" + selected + "'")
 
                 # path file da rinominare
@@ -436,7 +432,7 @@ class ListAssociationView:
                 root.destroy()
                 ListAssociationView.schermata_associazioni()
             else:
-                uv.show_dialog_with_time("Attenzione\nImpossibile rinominare 'Lista di default'",2)
+                uv.show_dialog_with_time("Attenzione\nImpossibile rinominare 'Lista di default'", 2)
 
             # _______________ end of rename_selected_element
 
@@ -478,7 +474,7 @@ class ListAssociationView:
 
         export_list_button = Button(root,
                                     text="Esporta lista",
-                                    command=lambda:show_chiavette(),
+                                    command=lambda: show_chiavette(),
                                     bg=SP.standard_color_setting("button_list_association_view"),
                                     font=SP.font_piccolo,
                                     fg=SP.button_font_color_gray_scale,
@@ -489,14 +485,14 @@ class ListAssociationView:
         export_list_button.pack(side=TOP, fill=BOTH)
 
         rename_list_button = Button(root,
-                                         text="Rinomina lista",
-                                         command=lambda: rename_selected_element(root),
-                                         bg=SP.standard_color_setting("button_list_association_view"),
-                                         font=SP.font_piccolo,
-                                         fg=SP.button_font_color_gray_scale,
-                                         bd=SP.bord_size,
-                                         relief=SP.bord_style,
-                                         activebackground=SP.standard_color_setting("button_list_association_view"))
+                                    text="Rinomina lista",
+                                    command=lambda: rename_selected_element(root),
+                                    bg=SP.standard_color_setting("button_list_association_view"),
+                                    font=SP.font_piccolo,
+                                    fg=SP.button_font_color_gray_scale,
+                                    bd=SP.bord_size,
+                                    relief=SP.bord_style,
+                                    activebackground=SP.standard_color_setting("button_list_association_view"))
         rename_list_button.config(height=2, width=25)
         rename_list_button.pack(side=TOP, fill=BOTH)
 
@@ -538,36 +534,36 @@ class ListAssociationView:
 
         # stampa delle chiavette sottoforma di pulsanti
         for usb in usb_key:
-            pulsante = ListAssociationView.button_USB_key(frame, usb,root)
+            pulsante = ListAssociationView.button_USB_key(frame, usb, root)
             pulsante.grid()
 
         uv.exit_button_with_text(root, "torna indietro")
 
         root.mainloop()
 
-    def button_USB_key(frame, nome_chiavetta,closing_root):
+    def button_USB_key(frame, nome_chiavetta, closing_root):
         #
         path_key = os.path.join(SP.path_punto_accesso_chiavette, nome_chiavetta)
 
         button = Button(frame, text=nome_chiavetta,
-                          bg=SP.standard_color_setting("button_list_association_view"),
-                          font=SP.font_piccolo,
-                          fg=SP.button_font_color_gray_scale,
-                          bd=SP.bord_size,
-                          relief=SP.bord_style,
-                          activebackground=SP.standard_color_setting("button_list_association_view"),
-                          command=lambda: ListAssociationView.show_and_import_list(path_key,closing_root)
-                          )
+                        bg=SP.standard_color_setting("button_list_association_view"),
+                        font=SP.font_piccolo,
+                        fg=SP.button_font_color_gray_scale,
+                        bd=SP.bord_size,
+                        relief=SP.bord_style,
+                        activebackground=SP.standard_color_setting("button_list_association_view"),
+                        command=lambda: ListAssociationView.show_and_import_list(path_key, closing_root)
+                        )
         button.config(width=40, height=3)
         return button
 
-    def show_and_import_list(path_usb_key,closing_root):
+    def show_and_import_list(path_usb_key, closing_root):
 
         closing_root.destroy()
         ''' 
         funzione disabilitata per problematiche di esecuzione su raspberry
         il drop menu si apre tante volte quante sono le selezioni dell'utente
-        
+
         def drop_menu_list_manager(evt):
 
             def import_list_and_closing():
@@ -662,6 +658,7 @@ class ListAssociationView:
             frame.pack(fill=BOTH, expand=YES)
             # ________________________ End of drop_menu_list:list_managetr ____________________________
         '''
+
         def import_list_with_button(name_list, cl_root):
 
             # root del drop_menu
@@ -683,7 +680,8 @@ class ListAssociationView:
 
             user_choice = True
             if found_existing_list:
-                user_choice = uv.multi_choice_view("Attenzione\n'"+name_list[0:20]+"'\nè già presente", "Sovrascrivi", "Annulla")
+                user_choice = uv.multi_choice_view("Attenzione\n'" + name_list[0:20] + "'\nè già presente",
+                                                   "Sovrascrivi", "Annulla")
 
             if user_choice:
 
@@ -700,8 +698,8 @@ class ListAssociationView:
                                                           SP.path_che_simula_la_memoria_interna_del_raspberry)
 
                     uv.show_dialog_with_time("Caricamento in corso....\n"
-                                             "Attendere qualche secondo.",2)
-                    uv.show_dialog_with_time("Operazione conclusa con successo",2)
+                                             "Attendere qualche secondo.", 2)
+                    uv.show_dialog_with_time("Operazione conclusa con successo", 2)
                     cl_root.destroy()
 
                     ListAssociationView.schermata_associazioni()
@@ -709,14 +707,13 @@ class ListAssociationView:
 
         # ______________________________start of show_import_list____________________________
 
-        path_list_folders = os.path.join(path_usb_key, SP.expor_folder_name)
-        #se la cartella "Liste" non esiste la creo immediatamente
+        path_list_folders = os.path.join(path_usb_key, SP.export_folder_name)
+        # se la cartella "Liste" non esiste la creo immediatamente
 
         if not os.path.exists(path_list_folders):
             oldmask = os.umask(0o77)
-            os.makedirs(os.path.join(path_usb_key, SP.expor_folder_name), 0o1411)
+            os.makedirs(os.path.join(path_usb_key, SP.export_folder_name), 0o1411)
             os.umask(oldmask)
-
 
         main_root = Tk()
         main_root.attributes('-fullscreen', SP.full_screen_option)
@@ -742,7 +739,7 @@ class ListAssociationView:
                           font=SP.font_piccolo,
                           fg=SP.root_font_color,
                           bg=SP.standard_color_setting("listbox_list_association_view")
-                           )
+                          )
 
         for list in os.listdir(path_list_folders):
             my_list.insert(END, list)
@@ -756,7 +753,7 @@ class ListAssociationView:
 
         import_list_button = Button(main_root,
                                     text="Importa lista",
-                                    command=lambda:import_list_with_button(list_name, main_root),
+                                    command=lambda: import_list_with_button(list_name, main_root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
                                     font=SP.font_piccolo,
                                     fg=SP.button_font_color_gray_scale,
@@ -773,23 +770,23 @@ class ListAssociationView:
         # _________________end of show_and_import_list__________________
 
     def menu_cascata_schermata_associazioni(master):
-        # serve a rimuovere la riga tratteggiata che permette di spostare le ozioni col mouse
+        # serve a rimuovere la riga tratteggiata che permette di spostare le opzioni col mouse
         master.option_add('*tearOff', FALSE)
         menu = Menu(master,
                     font=SP.font_medio,
                     bg=SP.standard_color_setting("menu_list_association_view"),
-                    fg=SP.root_font_color, )
+                    fg=SP.root_font_color)
         master.config(menu=menu)
         # crea il menu a cascata
         subMenu = Menu(menu,
                        font=SP.font_medio,
                        bg=SP.standard_color_setting("menu_list_association_view"),
-                       fg=SP.root_font_color, )
+                       fg=SP.root_font_color)
         menu.add_cascade(label="Opzioni                                                            ",
                          font=SP.font_medio,
-                         menu=subMenu, )  # menu a cascata
+                         menu=subMenu)  # menu a cascata
         # riga di separazione
-        menu.config(bd=SP.bord_size,activebackground=SP.standard_color_setting("menu_list_association_view"))
+        menu.config(bd=SP.bord_size, activebackground=SP.standard_color_setting("menu_list_association_view"))
         subMenu.add_command(label="Nuova Lista     ", font=SP.font_medio,
                             command=lambda: ListAssociationView.new_list_view(master),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
@@ -809,5 +806,4 @@ class ListAssociationView:
                             command=lambda: ListAssociationView.import_list(master),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
                             activeforeground=SP.root_font_color)
-        #subMenu.add_separator()
-
+        # subMenu.add_separator()

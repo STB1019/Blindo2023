@@ -46,18 +46,17 @@ def show_dialog_with_time(text, time):
 
 #  funzione per avere un pulsante di uscita dalla schermata attuale con testo variabile passato come param
 def exit_button_with_text(root, text):
-
-            exit_button = Button(root,
-                                 text=text,
-                                 command=lambda: root.destroy(),
-                                 bg=SP.standard_color_setting("exit_button_with_text"),
-                                 font=SP.font_piccolo,
-                                 fg=SP.button_font_color_gray_scale,
-                                 bd=SP.bord_size,
-                                 activebackground=SP.standard_color_setting("exit_button_with_text")
-                                 )
-            exit_button.config(height=3, width=10)
-            exit_button.pack(side=BOTTOM, fill=BOTH)
+    exit_button = Button(root,
+                         text=text,
+                         command=lambda: root.destroy(),
+                         bg=SP.standard_color_setting("exit_button_with_text"),
+                         font=SP.font_piccolo,
+                         fg=SP.button_font_color_gray_scale,
+                         bd=SP.bord_size,
+                         activebackground=SP.standard_color_setting("exit_button_with_text")
+                         )
+    exit_button.config(height=3, width=10)
+    exit_button.pack(side=BOTTOM, fill=BOTH)
 
 
 # questa funzione permette di creare un pulsante
@@ -65,24 +64,23 @@ def exit_button_with_text(root, text):
 # i parametri richiesti per la creazione del bottone sono: -frame su cui il bottone verrà applicato
 #                                                          -testo che apparirà sul pulsante
 def bottom_with_text(frame, text):
-            button = Button(frame,
-                            text=text,
-                            bg=SP.standard_color_setting("button_utility_view"),
-                            font=SP.font_piccolo,
-                            fg=SP.button_font_color_gray_scale,
-                            bd=SP.bord_size,
-                            relief=SP.bord_style,
-                            command=lambda: show_file(text.replace("Pulsante ", "")),
-                            activebackground=SP.active_background_color_gray_scale,
-                            activeforeground=SP.black)
+    button = Button(frame,
+                    text=text,
+                    bg=SP.standard_color_setting("button_utility_view"),
+                    font=SP.font_piccolo,
+                    fg=SP.button_font_color_gray_scale,
+                    bd=SP.bord_size,
+                    relief=SP.bord_style,
+                    command=lambda: show_file(text.replace("Pulsante ", "")),
+                    activebackground=SP.active_background_color_gray_scale,
+                    activeforeground=SP.black)
 
-            button.config(width=20, height=3)
-            return button
+    button.config(width=20, height=3)
+    return button
 
 
 # funzione che richiama una schermata chiedendo all'utente la conferma dell'eliminazione del file selezionato
 def elimina_file_con_conferma(path, nome_file):
-
     def confirmed_deletion(path, nome_file):
         for list in os.listdir(SP.path_liste):
             fm.delete_element_from_list(nome_file, list)
@@ -101,7 +99,7 @@ def elimina_file_con_conferma(path, nome_file):
 
     def abort_deletion():
 
-        #root.quit()
+        # root.quit()
         root.destroy()
 
     root = Tk()
@@ -147,7 +145,6 @@ def elimina_file_con_conferma(path, nome_file):
 
 
 def multiple_delete_with_choice(selected_file):
-
     def confirmed_deletion():
         for list in os.listdir(SP.path_liste):
             for file in selected_file:
@@ -171,7 +168,7 @@ def multiple_delete_with_choice(selected_file):
     frame.pack()
 
     label = Label(
-        frame, text="Attenzione!\nVuoi eliminare " +str(len(selected_file))+" file audio?",
+        frame, text="Attenzione!\nVuoi eliminare " + str(len(selected_file)) + " file audio?",
         bg=SP.standard_color_setting("label_utility_view"),
         fg=SP.button_font_color_gray_scale,
         width=90, height=3,
@@ -204,17 +201,16 @@ def multiple_delete_with_choice(selected_file):
     root.mainloop()
 
 
-def multi_choice_view(text_label,yes_button_text,no_button_text):
-
-    def confirmed_seletion():
+def multi_choice_view(text_label, yes_button_text, no_button_text):
+    def confirmed_selection():
         global choice
-        choice=True
+        choice = True
         root.quit()
         root.destroy()
 
     def abort_deletion():
         global choice
-        choice=False
+        choice = False
         root.quit()
         root.destroy()
 
@@ -237,7 +233,7 @@ def multi_choice_view(text_label,yes_button_text,no_button_text):
     confirm_button = Button(frame,
                             text=yes_button_text,
                             bg=SP.standard_color_setting("confirm_button_background"),
-                            command=lambda: confirmed_seletion(),
+                            command=lambda: confirmed_selection(),
                             font=SP.font_piccolo,
                             fg=SP.button_font_color_gray_scale,
                             relief=SP.bord_style,
@@ -261,7 +257,7 @@ def multi_choice_view(text_label,yes_button_text,no_button_text):
     return choice
 
 
-# schermata che appare DOPO aver cliccato uno dei pulsatni della lista
+# schermata che appare DOPO aver cliccato uno dei pulsanti della lista
 # che vengono mostrati DOPO aver cliccato il pulsante ASSOCIA nel MENUPRINCIPALE
 # richiede come parametro l'ID del pulsante che ha richiamato questa funzione
 # parametro necessario per un trackback
@@ -274,11 +270,11 @@ def show_file(idButton):
 
     #   funzione che elimina l'elemento selezionato dopo aver chiesto all'utente      #########
     def delete_item(root):
-        #for list in os.listdir(PS)
+        # for list in os.listdir(PS)
         song_name = mylist.get('active')
-        elimina_file_con_conferma(SP.path_che_simula_la_memoria_interna_del_raspberry,song_name)
+        elimina_file_con_conferma(SP.path_che_simula_la_memoria_interna_del_raspberry, song_name)
         root.destroy()
-            # #############   END OF delete_item ####################
+        # #############   END OF delete_item ####################
 
     #   START OF show_file
     root = Tk()
@@ -313,9 +309,9 @@ def show_file(idButton):
     #  pulsante che si trova alla destra della lista di file audio NELLA schermata  ASSOCIA
     bind_file_audio_button = Button(root,
                                     text="Scegli il file \n"
-                                          "che vuoi associare\n "
-                                          "al Pulsante" + idButton + "\n"
-                                                                     "e poi clicca qui \n",
+                                         "che vuoi associare\n "
+                                         "al Pulsante" + idButton + "\n"
+                                                                    "e poi clicca qui \n",
                                     command=lambda: bind_button(int(idButton), root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
                                     font=SP.font_piccolo,
@@ -329,8 +325,8 @@ def show_file(idButton):
     #  pulsante per eliminare i file audio selezionati     ###############
     delete_file_audio_button = Button(root,
                                       text="Scegli il file \n"
-                                          "che vuoi eliminare\n"
-                                          "e clicca qui",
+                                           "che vuoi eliminare\n"
+                                           "e clicca qui",
                                       command=lambda: delete_item(root),
                                       bg=SP.standard_color_setting("delete_button_background"),
                                       bd=SP.bord_size,
@@ -347,18 +343,20 @@ def show_file(idButton):
     # che quando premuto apre la schermata show_file
     # i parametri richiesti per la creazione del bottone sono: -frame su cui il bottone verrà applicato
     #                                                          -testo che apparirà sul pulsante
+
+
 def bottom_with_text(frame, text):
     button = Button(frame,
-                      text=text,
-                      bg=SP.standard_color_setting("button_list_association_view"),
-                      font=SP.font_piccolo,
-                      fg=SP.button_font_color_gray_scale,
-                      bd=SP.bord_size,
-                      relief=SP.bord_style,
-                      command=lambda: show_file(text.replace("Pulsante", "")),
-                      activebackground=SP.standard_color_setting("button_list_association_view"),
+                    text=text,
+                    bg=SP.standard_color_setting("button_list_association_view"),
+                    font=SP.font_piccolo,
+                    fg=SP.button_font_color_gray_scale,
+                    bd=SP.bord_size,
+                    relief=SP.bord_style,
+                    command=lambda: show_file(text.replace("Pulsante", "")),
+                    activebackground=SP.standard_color_setting("button_list_association_view"),
 
-                      )
+                    )
 
     button.config(width=20, height=3)
     return button
@@ -367,8 +365,8 @@ def bottom_with_text(frame, text):
 # funzione che crea un pulsante che visualizza i file da un path di origine
 # e li copia in un path destinzaione
 # mod: può essere "ESPORTA" o "IMPORTA" serve a rendere questa funzione più generale
-def button_usb_key(frame, mod, nome_chiavetta, path_origine, path_destinzaione,cl_root):
-    #cl_root.destroy
+def button_usb_key(frame, mod, nome_chiavetta, path_origine, path_destinzaione, cl_root):
+    # cl_root.destroy
     button = Button(frame, text=nome_chiavetta,
                     bg=SP.standard_color_setting("usb_key_button"),
                     font=SP.font_piccolo,
@@ -376,81 +374,81 @@ def button_usb_key(frame, mod, nome_chiavetta, path_origine, path_destinzaione,c
                     bd=SP.bord_size,
                     relief=SP.bord_style,
                     activebackground=SP.standard_color_setting("usb_key_button"),
-                    command=lambda: show_and_select_item_from_path(mod, path_origine, path_destinzaione,nome_chiavetta,cl_root)
-                   )
+                    command=lambda: show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_chiavetta,
+                                                                   cl_root)
+                    )
     button.config(width=40, height=3)
     return button
+
 
 '''
 function not used in project
 '''
+
+
 def button_usb_key_list(frame, nome_chiavetta):
     button = Button(frame, text=nome_chiavetta,
-                      bg=SP.standard_color_setting("usb_key_button"),
-                      font=SP.font_piccolo,
-                      fg=SP.button_font_color_gray_scale,
-                      bd=SP.bord_size,
-                      relief=SP.bord_style,
-                      activebackground=SP.standard_color_setting("usb_key_button"),
-                      # command=lav.show_list().es
-                      )
+                    bg=SP.standard_color_setting("usb_key_button"),
+                    font=SP.font_piccolo,
+                    fg=SP.button_font_color_gray_scale,
+                    bd=SP.bord_size,
+                    relief=SP.bord_style,
+                    activebackground=SP.standard_color_setting("usb_key_button"),
+                    # command=lav.show_list().es
+                    )
     button.config(width=40, height=3)
     return button
 
 
-# funzione che appare nel menu principale dopo aver cliccato su "Gestisci archivio)
+# funzione che appare nel menu principale dopo aver cliccato su "Gestisci archivio")
 def raspberry_memory_manager():
-
     # funzione che permette du selezionare ed eliminare elementi multipli
     def delete_selected_elements(root):
         selected_items = [mylist.get(idx) for idx in mylist.curselection()]
-        if len(selected_items)>0:
+        if len(selected_items) > 0:
             multiple_delete_with_choice(selected_items)
             root.destroy()
             raspberry_memory_manager()
         # _____________________ end of delete_selected_elements______________________________
 
     # funzione che permette du selezionare e rinominare elementi multipli
-    #solamente il primo elemento il lista verrà rinominato
+    # solamente il primo elemento il lista verrà rinominato
     def rename_selected_element(root):
         # array con tutti gli elementi selezionati
         selected_items = [mylist.get(idx) for idx in mylist.curselection()]
 
         # selezione del primo elemento dell'array
-        if len(selected_items)>0:
+        if len(selected_items) > 0:
             selected = selected_items[0]
             size = len(selected)
-            new_name = KeyboardView.keyboard("Rinomina '"+selected[0:size-4]+"'")
+            new_name = KeyboardView.keyboard("Rinomina '" + selected[0:size - 4] + "'")
             format = selected[size - 4:size]
-            final_name=new_name+format
+            final_name = new_name + format
             # format accoglie gli ultimi 4 caratteri del primo elemento di tutti i file selezionati dall'utente
 
             file_in_memory = os.listdir(SP.path_che_simula_la_memoria_interna_del_raspberry)
-            choice=True
+            choice = True
             for el in file_in_memory:
                 if final_name == el:
                     # richiesta all'utente
-                    choice=multi_choice_view("Elemento \n'"+ el +"'\n già presente","Sostituisci","Annulla")
+                    choice = multi_choice_view("Nome file \n'" + el + "'\n già presente", "Sostituisci", "Annulla")
                     if choice:
-                        os.remove(os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry,el))
+                        os.remove(os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry, el))
                     break
 
             if choice:
-
                 # path file da rinominare
-                scr = os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry, selected)
+                src = os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry, selected)
                 # path file rinominato
                 dst = os.path.join(SP.path_che_simula_la_memoria_interna_del_raspberry, final_name)
 
-                id_renemed_element=fm.give_id_button(selected)
-                os.rename(scr, dst)
-                if id_renemed_element is not None:
-                    fm.bind(final_name,id_renemed_element)
-
+                id_renamed_element = fm.give_id_button(selected)
+                os.rename(src, dst)
+                if id_renamed_element is not None:
+                    fm.bind(final_name, id_renamed_element)
 
             root.destroy()
             raspberry_memory_manager()
-
 
     root = Tk()
     root.attributes('-fullscreen', SP.full_screen_option)
@@ -519,8 +517,7 @@ def raspberry_memory_manager():
 
 
 # schermata che stampa a video i file contenuti in un determinato path
-def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_chiavetta,cl_root):
-
+def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_chiavetta, cl_root):
     #     funzione che copia la lista dei file selezionati in un'altra directory
     #     dall'utente nella schermata IMPORTA, dopo aver cliccato sul pulsante
     #     avente la scritta, appunto IMPORTA
@@ -546,7 +543,7 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
 
         # elimina_file_con_conferma(path_origine, str(number_of_deleted_file) + " file audio")
         multiple_delete_with_choice(selected)
-        #root.destroy()
+        # root.destroy()
 
     root = Tk()
     root.attributes('-fullscreen', SP.full_screen_option)
@@ -555,8 +552,8 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
 
     if mod == "esportare":
         text_layer = "Memoria interna"
-        bg_label_color=SP.standard_color_setting("export_root_background")
-        bg_list_color=SP.standard_color_setting("export_root_background")
+        bg_label_color = SP.standard_color_setting("export_root_background")
+        bg_list_color = SP.standard_color_setting("export_root_background")
     else:
         text_layer = nome_chiavetta
         bg_label_color = SP.standard_color_setting("import_root_background")
@@ -593,7 +590,6 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
     mylist.pack(side=LEFT, fill=BOTH, expand=True)
     scrollbar.config(width=70, command=mylist.yview)
     exit_button_with_text(root, "Torna al menu principale")
-
 
     # ############        caratteristiche pulsante IMPORTA/ESPORTA        ######################
     button_text = "Seleziona i file \nche desideri " + mod + "\ne poi clicca qui"

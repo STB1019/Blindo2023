@@ -1,7 +1,7 @@
 import pickle as pk
 import os
 
-#from IPython.utils.tests.test_wildcard import obj_t
+# from IPython.utils.tests.test_wildcard import obj_t
 
 from fileAudio import FileAudio
 import shutil
@@ -14,11 +14,13 @@ def change_list(list_name):
     global name_file
     name_file = list_name
 
+
 def give_id_button(audio_name):
     obj_list = load_list()
     for audio in obj_list:
         if audio.name == audio_name:
-              return int(audio.idButton)
+            return int(audio.idButton)
+
 
 # funzione che ritorna la lista delle stringhe dei fileAudio
 # presenti in "lista finale" riordinata in base al numero del pulsante
@@ -28,28 +30,28 @@ def give_sorted_list():
 
     if os.path.isfile(final_path):
         try:
-           with open(final_path, 'rb') as io:
+            with open(final_path, 'rb') as io:
                 my_objects = pk.load(io)
                 my_objects.sort(key=lambda x: int(str(x.idButton)))
 
                 for audio in my_objects:
                     if str(audio.name) != "DEFAULT":
                         formattedNumber = '{:5s}'.format(str(audio.idButton))
-                        list.append("Pulsante "+formattedNumber+" ------->  " + str(audio.name) + "\n")
+                        list.append("Pulsante " + formattedNumber + " ------->  " + str(audio.name) + "\n")
 
-        except (FileNotFoundError, IOError) as e:
+        except Exception as e:
             print(e)
     return list
 
 
 # funzione che elimina da lista finale i fileAudio che vengono eliminati tramite la GUI
-def delete_element_from_list(nome_file_da_rimuovere, nome_lista): # aggiungere la liste da conytrollare come parametro
+def delete_element_from_list(nome_file_da_rimuovere, nome_lista):  # aggiungere la liste da conytrollare come parametro
 
     # final_path_element = os.path.join(SP.path_liste, nome_file_da_rimuovere)
     final_path_list = os.path.join(SP.path_liste, nome_lista)
-    #print(final_path_list)
+    # print(final_path_list)
 
-    my_objects=[]
+    my_objects = []
     if os.path.isfile(final_path_list):
 
         try:
@@ -67,13 +69,12 @@ def delete_element_from_list(nome_file_da_rimuovere, nome_lista): # aggiungere l
 
 
 def create_list(list_name):
-
     default = FileAudio('DEFAULT', 0)
     my_objects = [default]
     save_file_audio_list(my_objects, list_name)
 
 
-def delete_bind(id,audio_name):
+def delete_bind(id, audio_name):
     obj_list = load_list()
 
     for audio in obj_list:
@@ -109,6 +110,7 @@ def bind(audio_name, id):
 
 
 def load_list():
+    # my_objects = []
     try:
         final_path = os.path.join(SP.path_liste, name_file)
         with open(final_path, 'rb') as io:
@@ -131,11 +133,6 @@ def save_file_audio_list(my_objects, name_list):
         pk.dump(my_objects, output, -1)
 
 
-
 # funzione che utilizza la funzione di sitema "shutil.copy" per copiare i file da un path ad un altro
 def copy_file_from_path_to_another(initial_path, ending_path):
     shutil.copy(initial_path, ending_path)
-
-
-
-

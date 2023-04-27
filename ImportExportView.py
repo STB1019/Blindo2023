@@ -24,7 +24,7 @@ class ImportExportView:
                       )
         label.pack();
 
-        # numbers_of_key is the number of conneccted key
+        # numbers_of_key is the number of connected key
         numbers_of_key = len(os.listdir(path_punto_accesso_chiavette))
 
         # le funzioni IMPORTA/ESPORTA vengono visualizzate
@@ -132,7 +132,7 @@ class ImportExportView:
             label.grid(row=1, column=0)
             label.config(width=50, height=4)
 
-            # index necessario a ??
+            # index necessario a posizionare il pulsante sulla schermata (indice della riga del pulsante)
             index = 2
             # ciclo che stampa tante "chiavette" quante inserite nel device
             for cartella in dirs:
