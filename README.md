@@ -14,13 +14,11 @@ This device includes a capacitive touch screen to improve user experience.
 The project was accomplished with Raspberry Pi 3, a single-board computer entirely programmed in Python.
 
 Project members:
-•	Diego Berardi
-•	Massimiliano Tummolo
-•	Samuele Ponzin
-•	Yari Bussi (referent) yaribussi@ieee.org
-•	Simone Caldarella (observer)
+•	Enrico Brambilla
+•	Stefano Fontana 
+•	Stefano Molari
+•	Elena Tonini (referent) elena.tonini@ieee.org
 
 
-ATTENZIONE:
-Seguire le istruzioni del file StaticParameter per 
-switchare tra le versioni Linux/Windows
+ATTENTION:
+Follow the instructions in the StaticParameter file to switch between Linux/Windows versions
