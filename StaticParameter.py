@@ -2,9 +2,12 @@
 ATTENZIONE ABILITARE LE LINEE  [5 6 7] PER UTILIZZO SU PC
 '''
 
-path_punto_accesso_chiavette = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioFromChiavetta"
-path_che_simula_la_memoria_interna_del_raspberry = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioRSPmemory"
-path_liste = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\Liste"
+#path_punto_accesso_chiavette = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioFromChiavetta"
+path_punto_accesso_chiavette = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\usb"
+#path_che_simula_la_memoria_interna_del_raspberry = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioRSPmemory"
+path_che_simula_la_memoria_interna_del_raspberry = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\recording"
+#path_liste = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\Liste"
+path_liste = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\liste"
 
 '''
 ATTENZIONE ABILITARE LE LINEE  [14 15 16 17 18] PER UTILIZZO SU RASPBERRY

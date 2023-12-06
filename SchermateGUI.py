@@ -8,14 +8,17 @@ from ListAssociationView import ListAssociationView as lav
 from SettingsView import SettingsView as sv
 import subprocess
 import pygame.mixer as PM
-
 PM.init()
 PM.music.set_volume(SP.initial_volume_set)
+
+registr = False
+
 class SchermateGUI:
 
-    # schermata del MENUPRINCIPALE
-    def menu_principale():
 
+
+    # schermata del MENUPRINCIPALE
+    def menu_principale(self):
         root = Tk()
         root.config(bg=SP.standard_color_setting("setting_main_menu"))
         root.attributes('-fullscreen', SP.full_screen_option)
@@ -25,7 +28,7 @@ class SchermateGUI:
         pulsante_registra= Button(frame,
                                   text="Registra",
                                   bg=SP.standard_color_setting("button_record_view"),
-                                  command=lambda:rv.registra(SP.path_che_simula_la_memoria_interna_del_raspberry),
+                                  command=lambda:rv.registra(SP.path_che_simula_la_memoria_interna_del_raspberry, registr),
                                   font=SP.font_piccolo,
                                   fg=SP.button_font_color_gray_scale,
                                   relief=SP.bord_style,

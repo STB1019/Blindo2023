@@ -9,6 +9,10 @@ import shutil
 
 #    funzione che mostra a video un messaggio
 #    passatole come primo parametro per un tempo (in secondi) passato come secondo parametrp
+import registrazione as reg
+import KeyboardView as key
+
+
 def show_dialog_with_time(text, time):
     def close(to_close):
         to_close.quit()
@@ -45,7 +49,7 @@ def show_dialog_with_time(text, time):
 
 
 #  funzione per avere un pulsante di uscita dalla schermata attuale con testo variabile passato come param
-def exit_button_with_text(root, text):
+def exit_button_with_text(root, text, recording=False):
     exit_button = Button(root,
                          text=text,
                          command=lambda: root.destroy(),
@@ -57,6 +61,34 @@ def exit_button_with_text(root, text):
                          )
     exit_button.config(height=3, width=10)
     exit_button.pack(side=BOTTOM, fill=BOTH)
+
+
+    # pulsante torna al menù chiude la registrazione audio come se fosse uno stop
+    file_audio_memoria_interna = os.listdir(SP.path_che_simula_la_memoria_interna_del_raspberry)
+    if recording:
+        reg.stop()
+
+        # funzione che richiama la tastiera e chiede all'utente il nome del file
+        file_not_found = True
+
+        label_keboard = "Scegli il nome del file appena registrato"
+
+        while file_not_found:
+
+            new_name = key.keyboard(label_keboard)
+
+            new_name_with_format = new_name + ".wav"
+
+            for file in file_audio_memoria_interna:
+                if new_name_with_format == file:
+                    # print("-----------------------------------trovato")
+                    file_not_found = True
+                    label_keboard = "File già esistente"
+                    break
+                else:
+                    # print("-----------------------------------non trovato")
+                    file_not_found = False
+    return exit_button
 
 
 # questa funzione permette di creare un pulsante

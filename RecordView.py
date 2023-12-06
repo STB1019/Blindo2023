@@ -10,15 +10,17 @@ import UtilityView as uv
 import StaticParameter as SP
 import os
 
-recording = False
+#recording = False
 
 
 class RecordView:
 
-    def registra(path_che_simula_la_memoria_interna_del_raspberry):
+    def registra(path_che_simula_la_memoria_interna_del_raspberry, recording):
         root = Tk()
         root.attributes('-fullscreen', SP.full_screen_option)
         root.config(bg=SP.standard_color_setting("root_record_view"))
+
+        exitButton = uv.exit_button_with_text(root, SP.exit_text, recording)
 
         frame = Frame(root)
         frame.config(bg=SP.standard_color_setting("frame_record_view"))
@@ -39,6 +41,7 @@ class RecordView:
             global new_name
             # nascono il pulsante PLAY REGISTRAIONE
             pulsante_play.pack_forget()
+            exitButton.pack_forget()
 
             # visualuzzo il pulsante STOP REGISTRAZIONE
             pulsante_stop.pack()
@@ -57,15 +60,20 @@ class RecordView:
             global recording
             # nascono il pulsante stop recording con il metodo pack_forget
             pulsante_stop.pack_forget()
+
             # abilito il pulsante play
             pulsante_play.pack()
+            exitButton.pack(side=BOTTOM, fill=BOTH)
 
+
+            #recording = False
 
             # lista dei file presenti nella cartella della memoria interna
             file_audio_memoria_interna= os.listdir(path_che_simula_la_memoria_interna_del_raspberry)
 
             if recording:
                 reg.stop()
+                recording = False
 
                 # funzione che richiama la tastiera e chiede all'utente il nome del file
                 file_not_found = True
@@ -129,6 +137,6 @@ class RecordView:
                                )
         pulsante_stop.config(height=5, width=23)
 
-        uv.exit_button_with_text(root, SP.exit_text)
+
 
         root.mainloop()
