@@ -87,7 +87,9 @@ class RecordView:
                     new_name_with_format = new_name+".wav"
 
                     for file in file_audio_memoria_interna:
-                        if new_name_with_format == file:
+                        if not new_name.strip():
+                            label_keboard = "Inserire un nome per il file"
+                        elif new_name_with_format == file:
                             #print("-----------------------------------trovato")
                             file_not_found = True
                             label_keboard = "File già esistente"
