@@ -30,7 +30,7 @@ class RecordView:
                       bg=SP.standard_color_setting("label_record_view"),
                       width=90,
                       height=3,
-                      font=SP.font_medio,
+                      font=SP.font_medium,
                       fg=SP.root_font_color
                       )
         label.pack()
@@ -49,7 +49,7 @@ class RecordView:
             recording = True
 
             #cambio il contenuto del label informativo
-            label["text"] = "Registrazione in corso.....\nPremi il pulsante per interrompere"
+            label["text"] = "Registrazione in corso\nPremi il pulsante per interrompere"
 
             final_path = os.path.join(path_che_simula_la_memoria_interna_del_raspberry, name_recoded_file)
 
@@ -78,21 +78,21 @@ class RecordView:
                 # funzione che richiama la tastiera e chiede all'utente il nome del file
                 file_not_found = True
 
-                label_keboard = "Scegli il nome del file appena registrato"
+                label_keyboard = "Nome del nuovo file"
 
                 while file_not_found:
 
-                    new_name = key.keyboard(label_keboard)
+                    new_name = key.keyboard(label_keyboard)
 
                     new_name_with_format = new_name+".wav"
 
                     for file in file_audio_memoria_interna:
                         if not new_name.strip():
-                            label_keboard = "Inserire un nome per il file"
+                            label_keyboard = "Inserire un nome per il file"
                         elif new_name_with_format == file:
                             #print("-----------------------------------trovato")
                             file_not_found = True
-                            label_keboard = "File già esistente"
+                            label_keyboard = "File già esistente"
                             break
                         else:
                             #print("-----------------------------------non trovato")
@@ -114,10 +114,10 @@ class RecordView:
 
         # caratteristiche pulsante INIZIA REGISTRAZIONE
         pulsante_play = Button(frame,
-                               text="Inizia a registrare",
+                               text="Inizia registrazione",
                                bg=SP.standard_color_setting("confirm_button_background"),
                                command=lambda: start_recoding(SP.name_recoded_file),
-                               font=SP.font_piccolo,
+                               font=SP.font_small,
                                fg=SP.button_font_color_gray_scale,
                                relief=SP.bord_style,
                                bd=SP.bord_size,
@@ -128,10 +128,10 @@ class RecordView:
 
         # caratteristiche pulsante  STOP REGISTRAZIONE
         pulsante_stop = Button(frame,
-                               text="Interrompi la registrazione",
+                               text="Termina registrazione",
                                bg=SP.standard_color_setting("delete_button_background"),
                                command=lambda: stop_recording(),
-                               font=SP.font_piccolo,
+                               font=SP.font_small,
                                fg=SP.button_font_color_gray_scale,
                                relief=SP.bord_style,
                                bd=SP.bord_size,

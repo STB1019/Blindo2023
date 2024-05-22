@@ -6,7 +6,7 @@ import UtilityView as uv
 
 
 class SettingsView:
-    def set_aspect():
+    def set_aspect(self):
         root = Tk()
         root.attributes('-fullscreen', SP.full_screen_option)
         root.config(bg=SP.root_background_color_gray_scale)
@@ -17,7 +17,7 @@ class SettingsView:
                       bg=SP.root_background_color_gray_scale,
                       fg=SP.root_font_color,
                       width=0, height=1,
-                      font=SP.font_medio
+                      font=SP.font_medium
                       )
         label.pack(side=TOP)
 
@@ -25,7 +25,7 @@ class SettingsView:
             relif_button = Button(
                                 frame,
                                 text=SP.bord_styles_set[i],
-                                font=SP.font_piccolo,
+                                font=SP.font_small,
                                 fg=SP.button_font_color_gray_scale,
                                 command=lambda: SP.set_bord_style(i),
                                 bg=SP.button_background_color_grey_scale,
@@ -36,7 +36,7 @@ class SettingsView:
             relif_button.config(height=4, width=10)
             relif_button.grid(row=3,column=i)
 
-    def choose_button_aspect():
+    def choose_button_aspect(self):
         root = Tk()
         root.attributes('-fullscreen', SP.full_screen_option)
         root.config(bg=SP.root_background_color_gray_scale)
@@ -47,7 +47,7 @@ class SettingsView:
                       bg=SP.root_background_color_gray_scale,
                       fg=SP.root_font_color,
                       width=90, height=4,
-                      font=SP.font_medio
+                      font=SP.font_medium
                       )
         label.pack()
 
@@ -55,7 +55,7 @@ class SettingsView:
                                     text="set size",
                                     bg=SP.button_background_color_grey_scale,
                                     command=lambda: SP.set_bord_size(),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     relief=SP.bord_style,
                                     bd=SP.bord_size,
@@ -69,7 +69,7 @@ class SettingsView:
                                      bg=SP.button_background_color_grey_scale,
                                      fg=SP.button_font_color_gray_scale,
                                      command=lambda: SettingsView.set_aspect(),
-                                     font=SP.font_piccolo,
+                                     font=SP.font_small,
                                      relief=SP.bord_style,
                                      bd=SP.bord_size,
                                      #activebackground=SP.active_background_color_gray_scale
@@ -79,18 +79,18 @@ class SettingsView:
         uv.exit_button_with_text(root, SP.exit_text)
         root.mainloop()
 
-    def setting_view():
+    def setting_view(self):
         root = Tk()
         root.attributes('-fullscreen', SP.full_screen_option)
         root.config(bg=SP.root_background_color_gray_scale)
         frame = Frame(root)
         frame.config(bg=SP.root_background_color_gray_scale)
         frame.pack()
-        label = Label(frame, text="Impostazioni varie",
+        label = Label(frame, text="Impostazioni",
                       bg=SP.root_background_color_gray_scale,
                       fg=SP.root_font_color,
                       width=90, height=4,
-                      font=SP.font_medio
+                      font=SP.font_medium
                       )
         label.pack()
 
@@ -98,7 +98,7 @@ class SettingsView:
                                     text="caratteristiche pulsanti",
                                     bg=SP.button_background_color_grey_scale,
                                     command=lambda: SettingsView.choose_button_aspect(),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     relief=SP.bord_style,
                                     bd=SP.bord_size,
@@ -112,7 +112,7 @@ class SettingsView:
                                      bg=SP.button_background_color_grey_scale,
                                      fg=SP.button_font_color_gray_scale,
                                      command=lambda: SettingsView.volume_view(),
-                                     font=SP.font_piccolo,
+                                     font=SP.font_small,
                                      relief=SP.bord_style,
                                      bd=SP.bord_size,
                                      #activebackground=SP.active_background_color_gray_scale
@@ -122,7 +122,7 @@ class SettingsView:
         uv.exit_button_with_text(root, SP.exit_text)
         root.mainloop()
 
-    def volume_view():
+    def volume_view(self):
             current_volume = Reproduction.Reproduction.give_volume()
             # funzione che aggiorna il valore del volume cmostrato all'utente
             def change_volume_on_display():
@@ -150,7 +150,7 @@ class SettingsView:
             current_vol_label = Label(
                                     frame,
                                     text=current_volume,
-                                    font=SP.font_grande,
+                                    font=SP.font_large,
                                     width=4,
                                     bg=SP.standard_color_setting("label_setting_view"),
                                     fg=SP.root_font_color
@@ -161,7 +161,7 @@ class SettingsView:
             decrese_vol_button = Button(
                                   frame,
                                   text="-",
-                                  font=SP.font_grande,
+                                  font=SP.font_large,
                                   fg=SP.button_font_color_gray_scale,
                                   command=decrese_and_change,
                                   bg=SP.standard_color_setting("button_setting_view"),
@@ -176,7 +176,7 @@ class SettingsView:
             increse_vol_button = Button(
                                   frame,
                                   text="+",
-                                  font=SP.font_grande,
+                                  font=SP.font_large,
                                   fg=SP.button_font_color_gray_scale,
                                   command=increse_and_change,
                                   bg=SP.standard_color_setting("button_setting_view"),
@@ -190,7 +190,7 @@ class SettingsView:
             scritta_vol = Label(frame,
                                 text="Volume",
                                 heigh=2,
-                                font=SP.font_medio,
+                                font=SP.font_medium,
                                 fg=SP.root_font_color,
                                 bg=SP.standard_color_setting("label_setting_view"))
 

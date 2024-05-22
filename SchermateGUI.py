@@ -29,7 +29,7 @@ class SchermateGUI:
                                   text="Registra",
                                   bg=SP.standard_color_setting("button_record_view"),
                                   command=lambda:rv.registra(SP.path_che_simula_la_memoria_interna_del_raspberry, registr),
-                                  font=SP.font_piccolo,
+                                  font=SP.font_small,
                                   fg=SP.button_font_color_gray_scale,
                                   relief=SP.bord_style,
                                   bd=SP.bord_size,
@@ -45,7 +45,7 @@ class SchermateGUI:
                                           bg=SP.standard_color_setting("button_import_export_view"),
                                           command=lambda:iev.import_export(SP.path_punto_accesso_chiavette,
                                                                             SP.path_che_simula_la_memoria_interna_del_raspberry),
-                                          font=SP.font_piccolo,
+                                          font=SP.font_small,
                                           fg=SP.button_font_color_gray_scale,
                                           relief=SP.bord_style,
                                           bd=SP.bord_size,
@@ -58,7 +58,7 @@ class SchermateGUI:
                                    text="Gestione Archivio",
                                    bg=SP.standard_color_setting("button_archive_manager_view"),
                                    command=lambda:uv.raspberry_memory_manager(),
-                                   font=SP.font_piccolo,
+                                   font=SP.font_small,
                                    fg=SP.button_font_color_gray_scale,
                                    relief=SP.bord_style,
                                    bd=SP.bord_size,
@@ -72,7 +72,7 @@ class SchermateGUI:
                                        text="Lista Associazioni",
                                        bg=SP.standard_color_setting("button_list_association_view"),
                                        command=lav.schermata_associazioni,
-                                       font=SP.font_piccolo,
+                                       font=SP.font_small,
                                        fg=SP.button_font_color_gray_scale,
                                        relief=SP.bord_style,
                                        bd=SP.bord_size,
@@ -106,14 +106,14 @@ class SchermateGUI:
          # serve a rimuovere la riga tratteggiata che permette di spostare le ozioni col mouse
         master.option_add('*tearOff', FALSE)
         menu = Menu(master,
-                    font=SP.font_medio,
+                    font=SP.font_medium,
                     fg=SP.root_font_color,
                     bg=SP.standard_color_setting("setting_main_menu"), )
         master.config(menu=menu)
         # crea il menu a cascata
 
         subMenu = Menu(menu,
-                       font=SP.font_medio,
+                       font=SP.font_medium,
                        fg=SP.root_font_color,
                        bg=SP.standard_color_setting("setting_main_menu"), )
 
@@ -122,19 +122,19 @@ class SchermateGUI:
                     activeforeground=SP.root_font_color)
 
         menu.add_cascade(label="Impostazioni                                                                  ",
-                         font=SP.font_medio, menu=subMenu,)  # menu a cascata
+                         font=SP.font_medium, menu=subMenu, )  # menu a cascata
         # riga di separazione
         subMenu.add_separator()
-        subMenu.add_command(label="Volume     ", font=SP.font_medio, command=lambda:sv.volume_view(),
+        subMenu.add_command(label="Volume     ", font=SP.font_medium, command=lambda:sv.volume_view(),
                             activebackground=SP.standard_color_setting("setting_main_menu"),
                             activeforeground=SP.root_font_color)
         subMenu.add_separator()
-        subMenu.add_command(label="Spegni    ", font=SP.font_medio, command=lambda: turn_off_device(),
+        subMenu.add_command(label="Spegni    ", font=SP.font_medium, command=lambda: turn_off_device(),
                             activebackground=SP.standard_color_setting("setting_main_menu"),
                             activeforeground=SP.root_font_color)
 
         subMenu.add_separator()
-        subMenu.add_command(label="Chiudi programma", font=SP.font_medio, command=master.destroy,
+        subMenu.add_command(label="Chiudi programma", font=SP.font_medium, command=master.destroy,
                             activebackground=SP.standard_color_setting("setting_main_menu"),
                             activeforeground=SP.root_font_color)
         subMenu.add_separator()

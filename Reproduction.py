@@ -18,20 +18,20 @@ class Reproduction:
 
     # a seguire 2 funzioni per aumentare e diminuire il volume
     # ogni volta che vengono richiamate cambiano il valore del volume del 10 per cento
-    def increse_vol():
+    def increse_vol(self):
 
         PM.init()
         current_volume = PM.music.get_volume()
         PM.music.set_volume(current_volume + 0.1)
 
-    def decrese_vol():
+    def decrese_vol(self):
 
         PM.init()
         current_volume = PM.music.get_volume()
         PM.music.set_volume(current_volume - 0.1)
 
     # funzione che restituisce il valore del volume in un range da 10 a 100
-    def give_volume():
+    def give_volume(self):
 
         PM.init()
         volume = PM.music.get_volume()

@@ -22,12 +22,12 @@ class AssociateView:
         text.pack(side="left", fill="both", expand=True)
 
         pulstante_uscita = Button(frame,
-                                  text="Torna al\nmenu principale",
+                                  text="Menu principale",
                                   command=lambda: root.destroy(),
                                   bd=SP.bord_size,
                                   relief=SP.bord_style,
                                   bg=SP.button_background_color,
-                                  font=SP.font_piccolo,
+                                  font=SP.font_small,
                                   fg=SP.button_font_color,
                                   activebackground=SP.active_background_color)
         pulstante_uscita.config(height=50, width=18)

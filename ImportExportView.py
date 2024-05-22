@@ -19,7 +19,7 @@ class ImportExportView:
         label = Label(frame, text="Scegli l'azione desiderata",
                       bg=SP.standard_color_setting("label_import_export_view"),
                       width=90, height=3,
-                      font=SP.font_medio,
+                      font=SP.font_medium,
                       fg=SP.root_font_color
                       )
         label.pack();
@@ -34,7 +34,7 @@ class ImportExportView:
                                    text="Importa",
                                    bg=SP.standard_color_setting("import_button_background"),
                                    command=lambda: choose_key_and_import(root),
-                                   font=SP.font_piccolo,
+                                   font=SP.font_small,
                                    fg=SP.button_font_color_gray_scale,
                                    bd=SP.bord_size,
                                    relief=SP.bord_style,
@@ -47,12 +47,12 @@ class ImportExportView:
                                    text="Esporta",
                                    bg=SP.standard_color_setting("export_button_background"),
                                    command=lambda: choose_key_and_export(root),
-                                   font=SP.font_piccolo,
+                                   font=SP.font_small,
                                    fg=SP.button_font_color_gray_scale,
                                    bd=SP.bord_size,
                                    relief=SP.bord_style,
                                    activebackground=SP.standard_color_setting("export_button_background")
-                                      )
+                                   )
             export_button.pack(side=RIGHT)
             export_button.config(height=5, width=22)
 
@@ -92,7 +92,7 @@ class ImportExportView:
                           text="Selezionare la chiavetta su cui esportare i file audio",
                           bd=20,
                           bg=SP.standard_color_setting("label_import_export_view"),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.root_font_color)
             label.grid(row=1, column=0)
             label.config(width=50, height=4)
@@ -124,10 +124,10 @@ class ImportExportView:
             # passo alla funzione pi\media e quindi verranno visualizzate a schermo le chiavette disponibili
             dirs = os.listdir(path_punto_accesso_chiavette)
 
-            label = Label(frame, text="Selezionare la chiavetta da dove importare i file audio",
+            label = Label(frame, text="Selezionare la chiavetta da cui importare i file audio",
                           bd=20,
                           bg=SP.standard_color_setting("label_import_export_view"),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.root_font_color)
             label.grid(row=1, column=0)
             label.config(width=50, height=4)

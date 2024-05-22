@@ -2,12 +2,12 @@
 ATTENZIONE ABILITARE LE LINEE  [5 6 7] PER UTILIZZO SU PC
 '''
 
-#path_punto_accesso_chiavette = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioFromChiavetta"
-path_punto_accesso_chiavette = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\usb"
-#path_che_simula_la_memoria_interna_del_raspberry = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\fileAudioRSPmemory"
-path_che_simula_la_memoria_interna_del_raspberry = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\recording"
-#path_liste = r"C:\Users\Elena Tonini\OneDrive\Desktop\IEEE\Blindo\Liste"
-path_liste = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\liste"
+path_punto_accesso_chiavette = r"/home/elena/PycharmProjects/Blindo/fileAudioFromChiavetta"
+# path_punto_accesso_chiavette = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\usb"
+path_che_simula_la_memoria_interna_del_raspberry = r"/home/elena/PycharmProjects/Blindo/fileAudioRSPmemory"
+# path_che_simula_la_memoria_interna_del_raspberry = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\recording"
+path_liste = r"/home/elena/PycharmProjects/Blindo/Liste"
+# path_liste = r"D:\Matteo\Scuola\Università\Terzo anno 22-23\Blindo\liste"
 
 '''
 ATTENZIONE ABILITARE LE LINEE  [14 15 16 17 18] PER UTILIZZO SU RASPBERRY
@@ -28,18 +28,18 @@ import os
 
 
 # formati audio disponibili
-formats_audio = [".mp3", ".wav", ".wma", ".ogg", ".flac"]
+audio_formats = [".mp3", ".wav", ".wma", ".ogg", ".flac"]
 
 # caratteristiche font
 font_keyboard_key = 13
-font_size_piccolo = 20
-font_size_medio = 33
-font_size_grande = 80
-font_stile = "Helvetica"
-keyboard_key_font = (font_stile, font_keyboard_key)
-font_piccolo = (font_stile, font_size_piccolo)
-font_medio = (font_stile, font_size_medio)
-font_grande = (font_stile, font_size_grande)
+font_size_small = 20
+font_size_medium = 33
+font_size_large = 80
+font_style = "Helvetica"
+keyboard_key_font = (font_style, font_keyboard_key)
+font_small = (font_style, font_size_small)
+font_medium = (font_style, font_size_medium)
+font_large = (font_style, font_size_large)
 
 # testo visualizzato nel pulsante che torna al menu principale
 exit_text = "Torna al menu principale"
@@ -54,13 +54,13 @@ bord_size = 5
 bord_style = bord_styles_set[2]
 
 #  numero di pulsanti collegati
-number_of_phisical_button = 5
+number_of_physical_button = 10
 
 # nome di default del file registrato
 name_recoded_file = "reg.wav"
 
 # abilita fullscreen con True, disabilita con False
-full_screen_option = True
+full_screen_option = False
 
 # messaggi interazione utente
 message_label_quit_device = "Vuoi spegnere il dispositivo?"
@@ -186,7 +186,7 @@ def set_bord_size(new_size):
 
 
 # funzione che modifica lo stile dei bordi dei pulsanti
-def set_bord_style(choosed_style):  # 0-5
+def set_bord_style(chosen_style):  # 0-5
     bord_styles_set = ["flat", "groove", "raised", "ridge", "solid", "sunken"]
     global bord_style
-    bord_style = bord_styles_set[choosed_style]
+    bord_style = bord_styles_set[chosen_style]

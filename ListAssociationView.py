@@ -26,7 +26,7 @@ class ListAssociationView:
         frame.config(bg=SP.standard_color_setting("frame_list_association_view"))
 
         label_memo = Label(frame, text=current_list,
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            bg=SP.standard_color_setting("label_list_association_view"),
                            fg=SP.root_font_color,
                            bd=20,
@@ -37,9 +37,10 @@ class ListAssociationView:
 
         my_list = Listbox(root,  # yscrollcommand = scrollbar.set ,
                           name='my_list',
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.root_font_color,
-                          width=90, height=8,
+                          width=90,
+                          height=8,
                           bg=SP.standard_color_setting("listbox_list_association_view"),
                           activestyle="none")
 
@@ -232,7 +233,7 @@ class ListAssociationView:
                              bd=SP.bord_size,
                              relief=SP.bord_style,
                              bg=SP.standard_color_setting("exit_button_with_text"),
-                             font=SP.font_piccolo,
+                             font=SP.font_small,
                              fg=SP.button_font_color_gray_scale,
                              activebackground=SP.standard_color_setting("exit_button_with_text")
                              )
@@ -319,7 +320,7 @@ class ListAssociationView:
                           text="Selezionare la chiavetta su cui esportare la lista",
                           bd=20,
                           bg=SP.standard_color_setting("frame_list_association_view"),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.root_font_color)
             label.grid(row=1, column=0)
             label.config(width=50, height=4)
@@ -329,7 +330,7 @@ class ListAssociationView:
                 path_chiavetta = os.path.join(SP.path_punto_accesso_chiavette, USB_key)
                 pulsante = Button(frame, text=USB_key,
                                   bg=SP.standard_color_setting("button_list_association_view"),
-                                  font=SP.font_piccolo,
+                                  font=SP.font_small,
                                   fg=SP.button_font_color_gray_scale,
                                   bd=SP.bord_size,
                                   relief=SP.bord_style,
@@ -412,7 +413,7 @@ class ListAssociationView:
                     print(e)
             # pop up informativo
 
-            # ____________________________  end of esport_list ____________________________
+            # ____________________________  end of export_list ____________________________
 
         def rename_selected_element(root):
             # array con tutti gli elementi selezionati
@@ -447,14 +448,20 @@ class ListAssociationView:
 
         mylist = Listbox(root,
                          yscrollcommand=scrollbar.set,
-                         font=SP.font_piccolo,
+                         name='mylist',
+                         font=SP.font_small,
+                         width=90,
+                         height=8,
                          bg=SP.standard_color_setting("listbox_list_association_view"),
-                         fg=SP.root_font_color, )
+                         fg=SP.root_font_color,
+                         activestyle="none")
 
         # questo ciclo controlla tutte le sottocartelle del path passato in os.walk
         # e inserisce in mylist tutti i file con un'estensione contenuta in "formats"
-        for lista in os.listdir(SP.path_liste):
-            mylist.insert(END, lista)
+        lists = os.listdir(SP.path_liste)
+        for l in lists:
+            mylist.insert(END, l)
+
         mylist.pack(side=LEFT, fill=BOTH, expand=True)
 
         mylist.pack(side=LEFT, fill=BOTH, expand=1, )
@@ -464,7 +471,7 @@ class ListAssociationView:
                                     text="Carica lista",
                                     command=lambda: upload_list(root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
@@ -476,7 +483,7 @@ class ListAssociationView:
                                     text="Esporta lista",
                                     command=lambda: show_chiavette(),
                                     bg=SP.standard_color_setting("button_list_association_view"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
@@ -488,7 +495,7 @@ class ListAssociationView:
                                     text="Rinomina lista",
                                     command=lambda: rename_selected_element(root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
@@ -504,7 +511,7 @@ class ListAssociationView:
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
                                     activebackground=SP.standard_color_setting("delete_button_background"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale)
 
         delete_list_button.config(height=2, width=25)
@@ -527,7 +534,7 @@ class ListAssociationView:
                       text="Selezionare la chiavetta da cui importare le liste",
                       bd=SP.bord_size,
                       bg=SP.standard_color_setting("label_list_association_view"),
-                      font=SP.font_piccolo,
+                      font=SP.font_small,
                       fg=SP.root_font_color)
         label.grid(row=1, column=0)
         label.config(width=50, height=4)
@@ -547,7 +554,7 @@ class ListAssociationView:
 
         button = Button(frame, text=nome_chiavetta,
                         bg=SP.standard_color_setting("button_list_association_view"),
-                        font=SP.font_piccolo,
+                        font=SP.font_small,
                         fg=SP.button_font_color_gray_scale,
                         bd=SP.bord_size,
                         relief=SP.bord_style,
@@ -726,7 +733,7 @@ class ListAssociationView:
                            text="Scegli lista e importa",
                            bg=SP.standard_color_setting("label_list_association_view"),
                            fg=SP.root_font_color,
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            width=90, height=3,
                            )
         label_info.pack()
@@ -736,7 +743,7 @@ class ListAssociationView:
 
         my_list = Listbox(main_root,
                           yscrollcommand=scrollbar.set,
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.root_font_color,
                           bg=SP.standard_color_setting("listbox_list_association_view")
                           )
@@ -755,7 +762,7 @@ class ListAssociationView:
                                     text="Importa lista",
                                     command=lambda: import_list_with_button(list_name, main_root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
@@ -773,36 +780,36 @@ class ListAssociationView:
         # serve a rimuovere la riga tratteggiata che permette di spostare le opzioni col mouse
         master.option_add('*tearOff', FALSE)
         menu = Menu(master,
-                    font=SP.font_medio,
+                    font=SP.font_medium,
                     bg=SP.standard_color_setting("menu_list_association_view"),
                     fg=SP.root_font_color)
         master.config(menu=menu)
         # crea il menu a cascata
         subMenu = Menu(menu,
-                       font=SP.font_medio,
+                       font=SP.font_medium,
                        bg=SP.standard_color_setting("menu_list_association_view"),
                        fg=SP.root_font_color)
         menu.add_cascade(label="Opzioni                                                            ",
-                         font=SP.font_medio,
+                         font=SP.font_medium,
                          menu=subMenu)  # menu a cascata
         # riga di separazione
         menu.config(bd=SP.bord_size, activebackground=SP.standard_color_setting("menu_list_association_view"))
-        subMenu.add_command(label="Nuova Lista     ", font=SP.font_medio,
+        subMenu.add_command(label="Nuova Lista     ", font=SP.font_medium,
                             command=lambda: ListAssociationView.new_list_view(master),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
                             activeforeground=SP.root_font_color)
         subMenu.add_separator()
-        subMenu.add_command(label="Mostra Liste    ", font=SP.font_medio,
+        subMenu.add_command(label="Mostra Liste    ", font=SP.font_medium,
                             command=lambda: ListAssociationView.show_list(master),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
                             activeforeground=SP.root_font_color)
         subMenu.add_separator()
-        subMenu.add_command(label="Modifica Lista", font=SP.font_medio,
+        subMenu.add_command(label="Modifica Lista", font=SP.font_medium,
                             command=lambda: ListAssociationView.schermata_pulsanti(master, 5),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
                             activeforeground=SP.root_font_color)
         subMenu.add_separator()
-        subMenu.add_command(label="Importa Liste  ", font=SP.font_medio,
+        subMenu.add_command(label="Importa Liste  ", font=SP.font_medium,
                             command=lambda: ListAssociationView.import_list(master),
                             activebackground=SP.standard_color_setting("menu_list_association_view"),
                             activeforeground=SP.root_font_color)

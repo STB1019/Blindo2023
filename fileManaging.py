@@ -7,7 +7,7 @@ from fileAudio import FileAudio
 import shutil
 import StaticParameter as SP
 
-name_file = 'Lista di default'
+name_file = 'Lista Default'
 
 
 def change_list(list_name):
@@ -37,7 +37,7 @@ def give_sorted_list():
                 for audio in my_objects:
                     if str(audio.name) != "DEFAULT":
                         formattedNumber = '{:5s}'.format(str(audio.idButton))
-                        list.append("Pulsante " + formattedNumber + " ------->  " + str(audio.name) + "\n")
+                        list.append("Pulsante " + formattedNumber + " --->  " + str(audio.name) + "\n")
 
         except Exception as e:
             print(e)
@@ -110,7 +110,7 @@ def bind(audio_name, id):
 
 
 def load_list():
-    # my_objects = []
+    my_objects = []
     try:
         final_path = os.path.join(SP.path_liste, name_file)
         with open(final_path, 'rb') as io:

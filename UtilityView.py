@@ -34,7 +34,7 @@ def show_dialog_with_time(text, time):
     label = Label(dialog,
                   text=text,
                   bg=SP.standard_color_setting("pop_up_background_color"),
-                  font=SP.font_piccolo,
+                  font=SP.font_small,
                   wraplength=500,
                   bd=4,
                   fg=SP.root_font_color,
@@ -54,7 +54,7 @@ def exit_button_with_text(root, text, recording=False):
                          text=text,
                          command=lambda: root.destroy(),
                          bg=SP.standard_color_setting("exit_button_with_text"),
-                         font=SP.font_piccolo,
+                         font=SP.font_small,
                          fg=SP.button_font_color_gray_scale,
                          bd=SP.bord_size,
                          activebackground=SP.standard_color_setting("exit_button_with_text")
@@ -99,7 +99,7 @@ def bottom_with_text(frame, text):
     button = Button(frame,
                     text=text,
                     bg=SP.standard_color_setting("button_utility_view"),
-                    font=SP.font_piccolo,
+                    font=SP.font_small,
                     fg=SP.button_font_color_gray_scale,
                     bd=SP.bord_size,
                     relief=SP.bord_style,
@@ -147,14 +147,14 @@ def elimina_file_con_conferma(path, nome_file):
                   bg=SP.standard_color_setting("root_utility_view"),
                   fg=SP.root_font_color,
                   width=90, height=3,
-                  font=SP.font_medio)
+                  font=SP.font_medium)
     label.pack()
 
     delete_button = Button(frame,
                            text="Elimina",
                            bg=SP.standard_color_setting("delete_button_background"),
                            command=lambda: confirmed_deletion(path, nome_file),
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            fg=SP.button_font_color_gray_scale,
                            relief=SP.bord_style,
                            bd=SP.bord_size,
@@ -166,7 +166,7 @@ def elimina_file_con_conferma(path, nome_file):
                           text="Annulla",
                           bg=SP.standard_color_setting("confirm_button_background"),
                           command=lambda: abort_deletion(),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.button_font_color_gray_scale,
                           relief=SP.bord_style,
                           bd=SP.bord_size,
@@ -204,7 +204,7 @@ def multiple_delete_with_choice(selected_file):
         bg=SP.standard_color_setting("label_utility_view"),
         fg=SP.button_font_color_gray_scale,
         width=90, height=3,
-        font=SP.font_medio)
+        font=SP.font_medium)
     label.pack()
 
     delete_button = Button(frame,
@@ -212,7 +212,7 @@ def multiple_delete_with_choice(selected_file):
                            bg=SP.standard_color_setting("delete_button_background"),
                            fg=SP.button_font_color_gray_scale,
                            command=lambda: confirmed_deletion(),
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            relief=SP.bord_style,
                            bd=SP.bord_size,
                            activebackground=SP.standard_color_setting("delete_button_background"))
@@ -224,7 +224,7 @@ def multiple_delete_with_choice(selected_file):
                           bg=SP.standard_color_setting("confirm_button_background"),
                           fg=SP.button_font_color_gray_scale,
                           command=lambda: abort_deletion(),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           relief=SP.bord_style,
                           bd=SP.bord_size,
                           activebackground=SP.standard_color_setting("confirm_button_background"))
@@ -259,14 +259,14 @@ def multi_choice_view(text_label, yes_button_text, no_button_text):
         bg=SP.standard_color_setting("label_utility_view"),
         fg=SP.root_font_color,
         width=90, height=3,
-        font=SP.font_medio)
+        font=SP.font_medium)
     label.pack()
 
     confirm_button = Button(frame,
                             text=yes_button_text,
                             bg=SP.standard_color_setting("confirm_button_background"),
                             command=lambda: confirmed_selection(),
-                            font=SP.font_piccolo,
+                            font=SP.font_small,
                             fg=SP.button_font_color_gray_scale,
                             relief=SP.bord_style,
                             bd=SP.bord_size,
@@ -278,7 +278,7 @@ def multi_choice_view(text_label, yes_button_text, no_button_text):
                           text=no_button_text,
                           bg=SP.standard_color_setting("delete_button_background"),
                           command=lambda: abort_deletion(),
-                          font=SP.font_piccolo,
+                          font=SP.font_small,
                           fg=SP.button_font_color_gray_scale,
                           relief=SP.bord_style,
                           bd=SP.bord_size,
@@ -317,11 +317,11 @@ def show_file(idButton):
     scrollbar.config(width=70)
     scrollbar.pack(side=LEFT, fill=Y)
 
-    formats = SP.formats_audio
+    formats = SP.audio_formats
     mydict = {}
     mylist = Listbox(root,
                      yscrollcommand=scrollbar.set,
-                     font=SP.font_piccolo,
+                     font=SP.font_small,
                      fg=SP.root_font_color,
                      bg=SP.standard_color_setting("root_list_association_view"))
     # questo ciclo controlla tutte le sottocartelle del path passato in os.walk
@@ -341,12 +341,12 @@ def show_file(idButton):
     #  pulsante che si trova alla destra della lista di file audio NELLA schermata  ASSOCIA
     bind_file_audio_button = Button(root,
                                     text="Scegli il file \n"
-                                         "che vuoi associare\n "
+                                         "da associare\n "
                                          "al Pulsante" + idButton + "\n"
-                                                                    "e poi clicca qui \n",
+                                                                    "e clicca qui \n",
                                     command=lambda: bind_button(int(idButton), root),
                                     bg=SP.standard_color_setting("button_list_association_view"),
-                                    font=SP.font_piccolo,
+                                    font=SP.font_small,
                                     fg=SP.button_font_color_gray_scale,
                                     bd=SP.bord_size,
                                     relief=SP.bord_style,
@@ -357,14 +357,14 @@ def show_file(idButton):
     #  pulsante per eliminare i file audio selezionati     ###############
     delete_file_audio_button = Button(root,
                                       text="Scegli il file \n"
-                                           "che vuoi eliminare\n"
+                                           "da eliminare\n"
                                            "e clicca qui",
                                       command=lambda: delete_item(root),
                                       bg=SP.standard_color_setting("delete_button_background"),
                                       bd=SP.bord_size,
                                       relief=SP.bord_style,
                                       activebackground=SP.standard_color_setting("delete_button_background"),
-                                      font=SP.font_piccolo,
+                                      font=SP.font_small,
                                       fg=SP.button_font_color_gray_scale)
     delete_file_audio_button.config(height=4, width=25)
     delete_file_audio_button.pack(fill=BOTH)
@@ -381,7 +381,7 @@ def bottom_with_text(frame, text):
     button = Button(frame,
                     text=text,
                     bg=SP.standard_color_setting("button_list_association_view"),
-                    font=SP.font_piccolo,
+                    font=SP.font_small,
                     fg=SP.button_font_color_gray_scale,
                     bd=SP.bord_size,
                     relief=SP.bord_style,
@@ -401,7 +401,7 @@ def button_usb_key(frame, mod, nome_chiavetta, path_origine, path_destinzaione, 
     # cl_root.destroy
     button = Button(frame, text=nome_chiavetta,
                     bg=SP.standard_color_setting("usb_key_button"),
-                    font=SP.font_piccolo,
+                    font=SP.font_small,
                     fg=SP.button_font_color_gray_scale,
                     bd=SP.bord_size,
                     relief=SP.bord_style,
@@ -421,7 +421,7 @@ function not used in project
 def button_usb_key_list(frame, nome_chiavetta):
     button = Button(frame, text=nome_chiavetta,
                     bg=SP.standard_color_setting("usb_key_button"),
-                    font=SP.font_piccolo,
+                    font=SP.font_small,
                     fg=SP.button_font_color_gray_scale,
                     bd=SP.bord_size,
                     relief=SP.bord_style,
@@ -493,7 +493,7 @@ def raspberry_memory_manager():
                        bg=SP.standard_color_setting("label_archive_manager_view"),
                        fg=SP.root_font_color,
                        width=90, height=3,
-                       font=SP.font_piccolo
+                       font=SP.font_small
                        )
     label_info.pack()
 
@@ -503,7 +503,7 @@ def raspberry_memory_manager():
     mylist = Listbox(root,
                      yscrollcommand=scrollbar.set,
                      selectmode=MULTIPLE,
-                     font=SP.font_piccolo,
+                     font=SP.font_small,
                      fg=SP.root_font_color,
                      bg=SP.standard_color_setting("listbox_archive_manager_view")
                      )
@@ -524,7 +524,7 @@ def raspberry_memory_manager():
                            bg=SP.standard_color_setting("delete_button_background"),
                            fg=SP.button_font_color_gray_scale,
                            command=lambda: delete_selected_elements(root),
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            bd=SP.bord_size,
                            relief=SP.bord_style,
                            activebackground=SP.standard_color_setting("delete_button_background")
@@ -537,7 +537,7 @@ def raspberry_memory_manager():
                            bg=SP.standard_color_setting("button_archive_manager_view"),
                            fg=SP.button_font_color_gray_scale,
                            command=lambda: rename_selected_element(root),
-                           font=SP.font_piccolo,
+                           font=SP.font_small,
                            bd=SP.bord_size,
                            relief=SP.bord_style,
                            activebackground=SP.standard_color_setting("button_archive_manager_view")
@@ -595,7 +595,7 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
                        bg=bg_label_color,
                        fg=SP.root_font_color,
                        width=90, height=3,
-                       font=SP.font_piccolo
+                       font=SP.font_small
                        )
     label_info.pack()
 
@@ -605,7 +605,7 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
     mylist = Listbox(root,
                      yscrollcommand=scrollbar.set,
                      selectmode=MULTIPLE,
-                     font=SP.font_piccolo,
+                     font=SP.font_small,
                      fg=SP.root_font_color,
                      bg=bg_list_color
                      )
@@ -633,7 +633,7 @@ def show_and_select_item_from_path(mod, path_origine, path_destinzaione, nome_ch
                                text=button_text,
                                bg=SP.standard_color_setting("import_button_background"),
                                command=lambda: select_items_and_copy(root),
-                               font=SP.font_piccolo,
+                               font=SP.font_small,
                                fg=SP.button_font_color_gray_scale,
                                bd=SP.bord_size,
                                relief=SP.bord_style,
